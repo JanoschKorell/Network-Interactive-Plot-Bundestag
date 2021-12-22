@@ -1,0 +1,1079 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #808080;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre>
+
+
+
+
+<span class="s1"># -*- coding: UTF-8 -*-</span>
+
+<span class="s2">import </span><span class="s0">sys</span>
+
+<span class="s0">print(sys.path)</span>
+<span class="s0">sys.path.append(</span><span class="s3">'/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages'</span><span class="s0">)</span>
+<span class="s0">sys.path.append(</span><span class="s3">'/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/lib-dynload'</span><span class="s0">)</span>
+<span class="s0">sys.path.append(</span><span class="s3">'/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9'</span><span class="s0">)</span>
+<span class="s0">sys.path.append(</span><span class="s3">'/opt/local/lib/libgs'</span><span class="s0">)</span>
+
+<span class="s2">import </span><span class="s0">sys</span>
+
+<span class="s2">if </span><span class="s0">(sys.stdout.encoding </span><span class="s2">is None</span><span class="s0">):</span>
+    <span class="s0">print &gt;&gt; sys.stderr</span><span class="s2">, </span><span class="s3">&quot;please set python env PYTHONIOENCODING=UTF-8, example: export PYTHONIOENCODING=UTF-8, when write to stdout.&quot;</span>
+    <span class="s0">exit(</span><span class="s4">1</span><span class="s0">)</span>
+
+<span class="s2">import </span><span class="s0">selenium</span>
+<span class="s2">import </span><span class="s0">pickle</span>
+<span class="s2">from </span><span class="s0">selenium </span><span class="s2">import </span><span class="s0">webdriver</span>
+<span class="s2">from </span><span class="s0">selenium.webdriver.chrome.options </span><span class="s2">import </span><span class="s0">Options</span>
+<span class="s2">from </span><span class="s0">webdriver_manager.chrome </span><span class="s2">import </span><span class="s0">ChromeDriverManager</span>
+<span class="s2">import </span><span class="s0">bs4</span>
+<span class="s2">from </span><span class="s0">bs4 </span><span class="s2">import </span><span class="s0">BeautifulSoup</span>
+<span class="s2">import </span><span class="s0">requests</span>
+<span class="s2">import </span><span class="s0">os</span>
+<span class="s2">import </span><span class="s0">tabula</span>
+<span class="s2">import </span><span class="s0">tabula.io</span>
+<span class="s2">import </span><span class="s0">tabulate</span>
+<span class="s2">import </span><span class="s0">PyPDF2</span>
+<span class="s2">import </span><span class="s0">shutil</span>
+<span class="s2">import </span><span class="s0">camelot</span>
+<span class="s2">import </span><span class="s0">camelot.io </span><span class="s2">as </span><span class="s0">camelot</span>
+<span class="s2">import </span><span class="s0">_tkinter</span>
+<span class="s2">import </span><span class="s0">pandas </span><span class="s2">as </span><span class="s0">pd</span>
+<span class="s2">from </span><span class="s0">scipy </span><span class="s2">import </span><span class="s0">nan</span>
+<span class="s2">import </span><span class="s0">numpy </span><span class="s2">as </span><span class="s0">np</span>
+<span class="s2">import </span><span class="s0">openpyxl</span>
+<span class="s2">import </span><span class="s0">os</span>
+<span class="s2">import </span><span class="s0">io</span>
+<span class="s2">import </span><span class="s0">re</span>
+<span class="s2">import </span><span class="s0">errno</span>
+<span class="s1"># import ghostscript</span>
+<span class="s2">import </span><span class="s0">locale</span>
+<span class="s2">import </span><span class="s0">fitz</span>
+<span class="s2">import </span><span class="s0">warnings</span>
+<span class="s2">import </span><span class="s0">xlrd</span>
+<span class="s2">import </span><span class="s0">xlrd3</span>
+<span class="s2">from </span><span class="s0">itertools </span><span class="s2">import </span><span class="s0">chain</span>
+<span class="s2">import </span><span class="s0">functools</span>
+<span class="s2">import </span><span class="s0">operator</span>
+<span class="s2">import </span><span class="s0">pylab</span>
+<span class="s2">import </span><span class="s0">matplotlib</span>
+
+<span class="s0">matplotlib.use(</span><span class="s3">'TkAgg'</span><span class="s0">)</span>
+<span class="s2">import </span><span class="s0">pyreadstat</span>
+
+<span class="s2">import </span><span class="s0">tabula</span>
+<span class="s2">import </span><span class="s0">tabula.io</span>
+<span class="s2">import </span><span class="s0">tabulate</span>
+<span class="s2">import </span><span class="s0">PyPDF2</span>
+<span class="s2">import </span><span class="s0">shutil</span>
+<span class="s2">import </span><span class="s0">camelot</span>
+<span class="s2">import </span><span class="s0">camelot.io </span><span class="s2">as </span><span class="s0">camelot</span>
+<span class="s2">import </span><span class="s0">_tkinter</span>
+<span class="s2">import </span><span class="s0">pandas </span><span class="s2">as </span><span class="s0">pd</span>
+<span class="s2">from </span><span class="s0">scipy </span><span class="s2">import </span><span class="s0">nan</span>
+<span class="s2">import </span><span class="s0">numpy </span><span class="s2">as </span><span class="s0">np</span>
+<span class="s2">import </span><span class="s0">openpyxl</span>
+<span class="s2">import </span><span class="s0">os</span>
+<span class="s2">import </span><span class="s0">io</span>
+<span class="s2">import </span><span class="s0">re</span>
+<span class="s2">import </span><span class="s0">errno</span>
+<span class="s1"># import ghostscript</span>
+<span class="s2">import </span><span class="s0">locale</span>
+<span class="s2">import </span><span class="s0">fitz</span>
+<span class="s2">import </span><span class="s0">warnings</span>
+<span class="s2">import </span><span class="s0">xlrd</span>
+<span class="s2">import </span><span class="s0">xlrd3</span>
+<span class="s2">from </span><span class="s0">itertools </span><span class="s2">import </span><span class="s0">chain</span>
+<span class="s2">import </span><span class="s0">functools</span>
+<span class="s2">import </span><span class="s0">operator</span>
+<span class="s2">import </span><span class="s0">pdfminer</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfparser </span><span class="s2">import </span><span class="s0">PDFParser</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfdocument </span><span class="s2">import </span><span class="s0">PDFDocument</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfpage </span><span class="s2">import </span><span class="s0">PDFPage</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfpage </span><span class="s2">import </span><span class="s0">PDFTextExtractionNotAllowed</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfinterp </span><span class="s2">import </span><span class="s0">PDFResourceManager</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfinterp </span><span class="s2">import </span><span class="s0">PDFPageInterpreter</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfdevice </span><span class="s2">import </span><span class="s0">PDFDevice</span>
+
+<span class="s0">warnings.simplefilter(action=</span><span class="s3">'ignore'</span><span class="s2">, </span><span class="s0">category=FutureWarning)</span>
+<span class="s2">import </span><span class="s0">pickle</span>
+<span class="s2">from </span><span class="s0">io </span><span class="s2">import </span><span class="s0">StringIO</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfinterp </span><span class="s2">import </span><span class="s0">PDFPageInterpreter</span><span class="s2">, </span><span class="s0">PDFResourceManager</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfpage </span><span class="s2">import </span><span class="s0">PDFPage</span>
+<span class="s2">from </span><span class="s0">pdfminer.converter </span><span class="s2">import </span><span class="s0">TextConverter</span>
+<span class="s2">from </span><span class="s0">pdfminer.layout </span><span class="s2">import </span><span class="s0">LAParams</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfparser </span><span class="s2">import </span><span class="s0">PDFParser</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfdocument </span><span class="s2">import </span><span class="s0">PDFDocument</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfpage </span><span class="s2">import </span><span class="s0">PDFPage</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfinterp </span><span class="s2">import </span><span class="s0">PDFResourceManager</span><span class="s2">, </span><span class="s0">PDFPageInterpreter</span>
+<span class="s2">from </span><span class="s0">pdfminer.converter </span><span class="s2">import </span><span class="s0">PDFPageAggregator</span>
+<span class="s2">from </span><span class="s0">pdfminer.layout </span><span class="s2">import </span><span class="s0">LTTextBoxHorizontal</span><span class="s2">, </span><span class="s0">LAParams</span>
+<span class="s2">from </span><span class="s0">pdfminer.pdfpage </span><span class="s2">import </span><span class="s0">PDFTextExtractionNotAllowed</span>
+<span class="s2">import </span><span class="s0">csv</span>
+<span class="s2">import </span><span class="s0">glob</span>
+<span class="s2">import </span><span class="s0">os</span>
+<span class="s2">import </span><span class="s0">re</span>
+<span class="s2">import </span><span class="s0">sys</span>
+<span class="s2">import </span><span class="s0">pandas </span><span class="s2">as </span><span class="s0">pd</span>
+<span class="s2">import </span><span class="s0">matplotlib</span>
+
+<span class="s0">matplotlib.use(</span><span class="s3">'AGG'</span><span class="s0">)</span>
+<span class="s2">import </span><span class="s0">matplotlib.pyplot </span><span class="s2">as </span><span class="s0">plt</span>
+<span class="s2">import </span><span class="s0">numpy </span><span class="s2">as </span><span class="s0">np</span>
+
+<span class="s0">warnings.simplefilter(action=</span><span class="s3">'ignore'</span><span class="s2">, </span><span class="s0">category=FutureWarning)</span>
+<span class="s2">from </span><span class="s0">tika </span><span class="s2">import </span><span class="s0">parser</span>
+<span class="s2">import </span><span class="s0">json</span>
+<span class="s2">import </span><span class="s0">pyperclip</span><span class="s2">, </span><span class="s0">re</span>
+<span class="s2">from </span><span class="s0">itertools </span><span class="s2">import </span><span class="s0">chain</span>
+<span class="s2">import </span><span class="s0">regex</span>
+
+<span class="s0">pd.options.mode.chained_assignment = </span><span class="s2">None</span>
+<span class="s2">import </span><span class="s0">collections</span>
+<span class="s2">from </span><span class="s0">matplotlib.pyplot </span><span class="s2">import </span><span class="s0">figure</span>
+
+<span class="s2">from </span><span class="s0">sklearn </span><span class="s2">import </span><span class="s0">datasets</span>
+<span class="s2">from </span><span class="s0">sklearn.cluster </span><span class="s2">import </span><span class="s0">KMeans</span>
+<span class="s2">from </span><span class="s0">sklearn.preprocessing </span><span class="s2">import </span><span class="s0">StandardScaler</span>
+<span class="s2">from </span><span class="s0">sklearn.model_selection </span><span class="s2">import </span><span class="s0">train_test_split</span>
+<span class="s2">from </span><span class="s0">sklearn.decomposition </span><span class="s2">import </span><span class="s0">PCA</span>
+<span class="s2">from </span><span class="s0">sklearn.neural_network </span><span class="s2">import </span><span class="s0">MLPClassifier</span>
+<span class="s2">import </span><span class="s0">scipy.cluster.hierarchy </span><span class="s2">as </span><span class="s0">sch</span>
+
+<span class="s2">import </span><span class="s0">networkx </span><span class="s2">as </span><span class="s0">nx</span>
+
+<span class="s2">import </span><span class="s0">logging</span>
+
+<span class="s1"># ===== START LOGGER =====</span>
+<span class="s0">logger = logging.getLogger(__name__)</span>
+<span class="s0">root_logger = logging.getLogger()</span>
+<span class="s0">root_logger.setLevel(logging.INFO)</span>
+<span class="s0">sh = logging.StreamHandler()</span>
+<span class="s0">formatter = logging.Formatter(</span><span class="s3">&quot;%(asctime)s - %(name)s - %(levelname)s - %(message)s&quot;</span><span class="s0">)</span>
+<span class="s0">sh.setFormatter(formatter)</span>
+<span class="s0">root_logger.addHandler(sh)</span>
+
+<span class="s2">import </span><span class="s0">pandas </span><span class="s2">as </span><span class="s0">pd</span>
+<span class="s2">import </span><span class="s0">numpy </span><span class="s2">as </span><span class="s0">np</span>
+<span class="s2">import </span><span class="s0">plotly.express </span><span class="s2">as </span><span class="s0">px</span>
+<span class="s2">import </span><span class="s0">dash</span>
+<span class="s2">import </span><span class="s0">dash_cytoscape </span><span class="s2">as </span><span class="s0">cyto</span>
+<span class="s2">import </span><span class="s0">dash_html_components </span><span class="s2">as </span><span class="s0">html</span>
+<span class="s2">import </span><span class="s0">dash_bootstrap_components </span><span class="s2">as </span><span class="s0">dbc</span>
+<span class="s2">import </span><span class="s0">dash_core_components </span><span class="s2">as </span><span class="s0">dcc</span>
+<span class="s2">from </span><span class="s0">dash.dependencies </span><span class="s2">import </span><span class="s0">Input</span><span class="s2">, </span><span class="s0">Output</span><span class="s2">, </span><span class="s0">State</span>
+<span class="s2">from </span><span class="s0">sklearn.manifold </span><span class="s2">import </span><span class="s0">TSNE</span>
+<span class="s2">import </span><span class="s0">umap</span>
+<span class="s2">import </span><span class="s0">json</span>
+
+<span class="s1">#os.chdir('/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/')</span>
+<span class="s1">#path = '/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/'</span>
+<span class="s1">#path_export = '/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/'</span>
+
+<span class="s0">app = dash.Dash(__name__</span><span class="s2">, </span><span class="s0">external_stylesheets=[dbc.themes.BOOTSTRAP])</span>
+
+<span class="s0">server = app.server</span>
+
+<span class="s0">network_df = </span><span class="s3">'https://raw.githubusercontent.com/JanoschKorell/Netzwerk-Bundestag-Online/main/characNS.csv'</span>
+<span class="s0">network_df2 = </span><span class="s3">'https://raw.githubusercontent.com/JanoschKorell/Netzwerk-Bundestag-Online/main/characNS.csv'</span>
+
+<span class="s1">#### Netzwerk Koordinaten ####</span>
+
+
+<span class="s0">G = nx.Graph()</span>
+<span class="s0">G = nx.from_pandas_edgelist(network_df2</span><span class="s2">, </span><span class="s3">'Sitzungsnummer'</span><span class="s2">, </span><span class="s3">'Drucksache_Nummer'</span><span class="s2">, </span><span class="s0">create_using=nx.Graph())</span>
+<span class="s0">pos = nx.spring_layout(G)</span>
+
+<span class="s0">nodes = []</span>
+<span class="s2">for </span><span class="s0">p </span><span class="s2">in </span><span class="s0">pos:</span>
+    <span class="s0">nodes.append(p)</span>
+
+<span class="s0">vals = pos.values()</span>
+<span class="s0">array = np.stack(vals</span><span class="s2">, </span><span class="s0">axis=</span><span class="s4">0</span><span class="s0">)</span>
+<span class="s0">x_list = []</span>
+<span class="s0">y_list = []</span>
+
+<span class="s2">for </span><span class="s0">node </span><span class="s2">in </span><span class="s0">array[:</span><span class="s2">, </span><span class="s4">0</span><span class="s0">]:</span>
+    <span class="s0">node = node * </span><span class="s4">1000</span>
+    <span class="s0">x_list.append(node)</span>
+<span class="s2">for </span><span class="s0">node </span><span class="s2">in </span><span class="s0">array[:</span><span class="s2">, </span><span class="s4">1</span><span class="s0">]:</span>
+    <span class="s0">node = node * </span><span class="s4">1000</span>
+    <span class="s0">y_list.append(node)</span>
+
+<span class="s0">coordi = pd.DataFrame(nodes</span><span class="s2">, </span><span class="s0">columns=[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">])</span>
+<span class="s0">coordi[</span><span class="s3">'x'</span><span class="s0">] = x_list</span>
+<span class="s0">coordi[</span><span class="s3">'y'</span><span class="s0">] = y_list</span>
+
+<span class="s1"># Merge: Koordinaten hinzufügen</span>
+
+<span class="s0">network_df3 = coordi.merge(network_df</span><span class="s2">, </span><span class="s0">on=</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s0">)</span>
+<span class="s0">network_df3[</span><span class="s3">'ThemaVD'</span><span class="s0">] = network_df3[</span><span class="s3">'ThemaVD'</span><span class="s0">].str.replace(</span><span class="s3">'ü'</span><span class="s2">, </span><span class="s3">'ü'</span><span class="s0">)</span>
+<span class="s0">network_df3[</span><span class="s3">'ThemaVD'</span><span class="s0">] = network_df3[</span><span class="s3">'ThemaVD'</span><span class="s0">].str.replace(</span><span class="s3">'ä'</span><span class="s2">, </span><span class="s3">'ä'</span><span class="s0">)</span>
+<span class="s0">network_df3[</span><span class="s3">'TitelVD'</span><span class="s0">] = network_df3[</span><span class="s3">'TitelVD'</span><span class="s0">].str.replace(</span><span class="s3">'Große'</span><span class="s2">, </span><span class="s3">'Grosse'</span><span class="s0">)</span>
+
+<span class="s1">###!!!Vorher ändern!!!</span>
+
+<span class="s0">network_df3.loc[network_df3[</span><span class="s3">'TitelVD_ID'</span><span class="s0">] == -</span><span class="s4">1</span><span class="s2">, </span><span class="s3">'Dokumentart'</span><span class="s0">] = </span><span class="s3">'1'</span>
+<span class="s0">network_df3.loc[network_df3[</span><span class="s3">'TitelVD_ID'</span><span class="s0">] != -</span><span class="s4">1</span><span class="s2">, </span><span class="s3">'Dokumentart'</span><span class="s0">] = </span><span class="s3">'2'</span>
+
+<span class="s1">###### Elements erstellen#######</span>
+
+<span class="s0">nodes = network_df3.filter(</span>
+    <span class="s0">[</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s2">, </span><span class="s3">'color'</span><span class="s2">, </span><span class="s3">'ThemaVD'</span><span class="s2">, </span><span class="s3">'TitelVD'</span><span class="s2">, </span><span class="s3">'year'</span><span class="s2">, </span><span class="s3">'month'</span><span class="s2">, </span><span class="s3">'day'</span><span class="s2">, </span><span class="s3">'x'</span><span class="s2">, </span><span class="s3">'y'</span><span class="s2">, </span><span class="s3">'Occurrences_aktuell'</span><span class="s2">,</span>
+     <span class="s3">'Dokumentart'</span><span class="s0">])</span>
+
+<span class="s0">mapping = {nodes.columns[</span><span class="s4">0</span><span class="s0">]: </span><span class="s3">'id'</span><span class="s0">}</span>
+<span class="s0">nodes = nodes.rename(columns=mapping)</span>
+<span class="s0">nodes[</span><span class="s3">'label'</span><span class="s0">] = nodes[</span><span class="s3">'id'</span><span class="s0">]</span>
+<span class="s0">d = nodes</span>
+<span class="s0">afile = open(</span><span class="s3">r'nodesBasis'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+<span class="s1">### Filter nodes</span>
+
+
+<span class="s0">network_merge = network_df3.copy()</span>
+<span class="s2">del </span><span class="s0">network_merge[</span><span class="s3">'Sitzungsnummer'</span><span class="s0">]</span>
+<span class="s0">edges1 = network_merge.merge(network_df2</span><span class="s2">, </span><span class="s0">on=</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s0">)</span>
+
+<span class="s2">try</span><span class="s0">:</span>
+    <span class="s0">edges1 = edges1.rename(columns={</span><span class="s3">'TitelVD_x'</span><span class="s0">: </span><span class="s3">'TitelVD'</span><span class="s0">})</span>
+    <span class="s0">edges1 = edges1.rename(columns={</span><span class="s3">'ThemaVD_x'</span><span class="s0">: </span><span class="s3">'ThemaVD'</span><span class="s0">})</span>
+
+<span class="s2">except</span><span class="s0">:</span>
+    <span class="s2">pass</span>
+
+<span class="s0">edges = edges1.filter([</span><span class="s3">&quot;Sitzungsnummer&quot;</span><span class="s2">, </span><span class="s3">'Drucksache_Nummer'</span><span class="s2">, </span><span class="s3">'TitelVD'</span><span class="s2">, </span><span class="s3">'ThemaVD'</span><span class="s0">])</span>
+<span class="s1">### Filter edges</span>
+
+
+
+<span class="s1">### Ausnahme der Protokolle</span>
+
+
+<span class="s0">size = </span><span class="s4">30</span>
+
+<span class="s1"># Nodes</span>
+<span class="s0">startup_elm_list = []</span>
+<span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b</span><span class="s2">, </span><span class="s0">them</span><span class="s2">, </span><span class="s0">tit</span><span class="s2">, </span><span class="s0">year</span><span class="s2">, </span><span class="s0">month</span><span class="s2">, </span><span class="s0">day</span><span class="s2">, </span><span class="s0">occ</span><span class="s2">, </span><span class="s0">x</span><span class="s2">, </span><span class="s0">y</span><span class="s2">, </span><span class="s0">doc </span><span class="s2">in </span><span class="s0">zip(nodes[</span><span class="s3">'id'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'label'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'ThemaVD'</span><span class="s0">]</span><span class="s2">,</span>
+                                                             <span class="s0">nodes[</span><span class="s3">'TitelVD'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'year'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'month'</span><span class="s0">]</span><span class="s2">,</span>
+                                                             <span class="s0">nodes[</span><span class="s3">'day'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'Occurrences_aktuell'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'x'</span><span class="s0">]</span><span class="s2">,</span>
+                                                             <span class="s0">nodes[</span><span class="s3">'y'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'Dokumentart'</span><span class="s0">]):</span>
+    <span class="s0">dict = {</span><span class="s3">'data'</span><span class="s0">: {</span><span class="s3">'id'</span><span class="s0">: str(a)</span><span class="s2">, </span><span class="s3">'label'</span><span class="s0">: str(b)</span><span class="s2">, </span><span class="s3">'titel'</span><span class="s0">: str(tit)</span><span class="s2">, </span><span class="s3">'thema'</span><span class="s0">: str(them)</span><span class="s2">,</span>
+                     <span class="s3">'datum'</span><span class="s0">: str(year) + </span><span class="s3">'-' </span><span class="s0">+ str(month) + </span><span class="s3">'-' </span><span class="s0">+ str(day)</span><span class="s2">, </span><span class="s3">'node_size'</span><span class="s0">: float(occ * size)}</span><span class="s2">,</span>
+            <span class="s3">'position'</span><span class="s0">: {</span><span class="s3">'x'</span><span class="s0">: float(x)</span><span class="s2">, </span><span class="s3">'y'</span><span class="s0">: float(y)}</span><span class="s2">,</span>
+            <span class="s3">'classes'</span><span class="s0">: str(tit) + </span><span class="s3">' ' </span><span class="s0">+ str(them) + </span><span class="s3">' ' </span><span class="s0">+ </span><span class="s3">'node' </span><span class="s0">+ </span><span class="s3">' ' </span><span class="s0">+ str(doc)}</span>
+    <span class="s0">startup_elm_list.append(dict)</span>
+
+<span class="s1"># Edges</span>
+
+<span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b</span><span class="s2">, </span><span class="s0">c </span><span class="s2">in </span><span class="s0">zip(edges[</span><span class="s3">&quot;Sitzungsnummer&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">edges[</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">edges[</span><span class="s3">'TitelVD'</span><span class="s0">]):</span>
+    <span class="s0">dict = {</span><span class="s3">'data'</span><span class="s0">: {</span><span class="s3">'source'</span><span class="s0">: str(a)</span><span class="s2">, </span><span class="s3">'target'</span><span class="s0">: str(b)}</span><span class="s2">, </span><span class="s3">'classes'</span><span class="s0">: str(c)}</span>
+    <span class="s0">startup_elm_list.append(dict)</span>
+
+<span class="s1">###############################App#######################################</span>
+
+
+<span class="s1">####################Style#####################</span>
+
+
+<span class="s0">col_swatch = px.colors.qualitative.Dark24</span>
+
+<span class="s0">def_stylesheet = []</span>
+<span class="s2">for </span><span class="s0">i</span><span class="s2">, </span><span class="s0">v </span><span class="s2">in </span><span class="s0">zip(range(len(nodes[</span><span class="s3">&quot;TitelVD&quot;</span><span class="s0">].dropna().unique()))</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">&quot;TitelVD&quot;</span><span class="s0">].dropna().unique()):</span>
+    <span class="s0">a = {</span><span class="s3">&quot;selector&quot;</span><span class="s0">: </span><span class="s3">'.' </span><span class="s0">+ str(v)</span><span class="s2">, </span><span class="s3">&quot;style&quot;</span><span class="s0">: {</span><span class="s3">&quot;background-color&quot;</span><span class="s0">: col_swatch[i]</span><span class="s2">, </span><span class="s3">&quot;opacity&quot;</span><span class="s0">: </span><span class="s4">0.65</span><span class="s0">}}</span>
+    <span class="s0">def_stylesheet.append(a)</span>
+
+<span class="s2">for </span><span class="s0">i</span><span class="s2">, </span><span class="s0">v </span><span class="s2">in </span><span class="s0">zip(range(len(edges[</span><span class="s3">&quot;TitelVD&quot;</span><span class="s0">].dropna().unique()))</span><span class="s2">, </span><span class="s0">edges[</span><span class="s3">&quot;TitelVD&quot;</span><span class="s0">].dropna().unique()):</span>
+    <span class="s0">a = {</span><span class="s3">&quot;selector&quot;</span><span class="s0">: </span><span class="s3">'.' </span><span class="s0">+ str(v)</span><span class="s2">, </span><span class="s3">&quot;style&quot;</span><span class="s0">: {</span><span class="s3">&quot;line-color&quot;</span><span class="s0">: col_swatch[i]}}</span>
+    <span class="s0">def_stylesheet.append(a)</span>
+
+<span class="s0">def_stylesheet += [</span>
+
+    <span class="s1"># Class selectors</span>
+    <span class="s0">{</span>
+        <span class="s3">'selector'</span><span class="s0">: </span><span class="s3">'.2'</span><span class="s2">,</span>
+        <span class="s3">'style'</span><span class="s0">: {</span>
+            <span class="s3">&quot;width&quot;</span><span class="s0">: </span><span class="s3">&quot;data(node_size)&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;height&quot;</span><span class="s0">: </span><span class="s3">&quot;data(node_size)&quot;</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span><span class="s2">,</span>
+    <span class="s0">{</span>
+        <span class="s3">'selector'</span><span class="s0">: </span><span class="s3">'.1'</span><span class="s2">,</span>
+        <span class="s3">'style'</span><span class="s0">: {</span>
+            <span class="s3">'background-color'</span><span class="s0">: </span><span class="s3">&quot;black&quot;</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span><span class="s2">,</span>
+
+<span class="s0">]</span>
+
+
+<span class="s1">###########################################</span>
+
+
+<span class="s1">#############Kat_dropdown plus Anzahl###############</span>
+
+<span class="s2">def </span><span class="s0">dropdowns(nodes):</span>
+    <span class="s0">nodesTopicCount = nodes.filter([</span><span class="s3">&quot;ThemaVD&quot;</span><span class="s2">, </span><span class="s3">'TitelVD'</span><span class="s0">]).dropna()</span>
+
+    <span class="s0">nodesTopicCount[</span><span class="s3">'ThemaVD'</span><span class="s0">] = nodesTopicCount[</span><span class="s3">'ThemaVD'</span><span class="s0">].str.replace(</span><span class="s3">'ü'</span><span class="s2">, </span><span class="s3">'ü'</span><span class="s0">)</span>
+    <span class="s0">nodesTopicCount[</span><span class="s3">'ThemaVD'</span><span class="s0">] = nodesTopicCount[</span><span class="s3">'ThemaVD'</span><span class="s0">].str.replace(</span><span class="s3">'ä'</span><span class="s2">, </span><span class="s3">'ä'</span><span class="s0">)</span>
+    <span class="s0">nodesTopicCount[</span><span class="s3">'TitelVD'</span><span class="s0">] = nodesTopicCount[</span><span class="s3">'TitelVD'</span><span class="s0">].str.replace(</span><span class="s3">'Große'</span><span class="s2">, </span><span class="s3">'Grosse'</span><span class="s0">)</span>
+
+    <span class="s0">zTitel1 = nodes.TitelVD.value_counts(ascending=</span><span class="s2">False</span><span class="s0">)</span>
+    <span class="s0">zTitel = zTitel1.to_dict()</span>
+    <span class="s0">nodesTopicCount[</span><span class="s3">'CountTitel'</span><span class="s0">] = nodesTopicCount[</span><span class="s3">'TitelVD'</span><span class="s0">].map(zTitel)</span>
+
+    <span class="s0">zTitel1 = nodes.ThemaVD.value_counts(ascending=</span><span class="s2">False</span><span class="s0">)</span>
+    <span class="s0">zTitel = zTitel1.to_dict()</span>
+    <span class="s0">nodesTopicCount[</span><span class="s3">'CountThema'</span><span class="s0">] = nodesTopicCount[</span><span class="s3">'ThemaVD'</span><span class="s0">].map(zTitel)</span>
+
+    <span class="s0">nodesTopicCountTitel = nodesTopicCount.filter([</span><span class="s3">&quot;CountTitel&quot;</span><span class="s2">, </span><span class="s3">'TitelVD'</span><span class="s0">]).dropna()</span>
+    <span class="s0">nodesTopicCountTitel = nodesTopicCountTitel.drop_duplicates(subset=[</span><span class="s3">&quot;TitelVD&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">keep=</span><span class="s3">'first'</span><span class="s0">).sort_values(</span>
+        <span class="s0">by=</span><span class="s3">'CountTitel'</span><span class="s2">, </span><span class="s0">ascending=</span><span class="s2">False</span><span class="s0">)</span>
+    <span class="s0">nodesTopicCountThema = nodesTopicCount.filter([</span><span class="s3">&quot;CountThema&quot;</span><span class="s2">, </span><span class="s3">'ThemaVD'</span><span class="s0">]).dropna()</span>
+    <span class="s0">nodesTopicCountThema = nodesTopicCountThema.drop_duplicates(subset=[</span><span class="s3">&quot;ThemaVD&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">keep=</span><span class="s3">'first'</span><span class="s0">).sort_values(</span>
+        <span class="s0">by=</span><span class="s3">'CountThema'</span><span class="s2">, </span><span class="s0">ascending=</span><span class="s2">False</span><span class="s0">)</span>
+
+    <span class="s0">cat_startPSL = []</span>
+    <span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b </span><span class="s2">in </span><span class="s0">zip(nodesTopicCountTitel[</span><span class="s3">'TitelVD'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodesTopicCountTitel[</span><span class="s3">'CountTitel'</span><span class="s0">]):</span>
+        <span class="s0">cat_startPS = []</span>
+        <span class="s0">cat_startPS.append(a)</span>
+        <span class="s0">cat_startPS.append(b)</span>
+        <span class="s0">cat_startPSL.append(cat_startPS)</span>
+
+    <span class="s0">catThem_startPSL = []</span>
+    <span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b </span><span class="s2">in </span><span class="s0">zip(nodesTopicCountThema[</span><span class="s3">'ThemaVD'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodesTopicCountThema[</span><span class="s3">'CountThema'</span><span class="s0">]):</span>
+        <span class="s0">catThem_startPS = []</span>
+        <span class="s0">catThem_startPS.append(a)</span>
+        <span class="s0">catThem_startPS.append(b)</span>
+        <span class="s0">catThem_startPSL.append(catThem_startPS)</span>
+
+    <span class="s0">cat_start = [str(i[</span><span class="s4">0</span><span class="s0">]) + </span><span class="s3">'  ' </span><span class="s0">+ </span><span class="s3">'(' </span><span class="s0">+ str(i[</span><span class="s4">1</span><span class="s0">]) + </span><span class="s3">')' </span><span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">cat_startPSL]</span>
+    <span class="s0">catThem_start = [str(i[</span><span class="s4">0</span><span class="s0">]) + </span><span class="s3">'  ' </span><span class="s0">+ </span><span class="s3">'(' </span><span class="s0">+ str(i[</span><span class="s4">1</span><span class="s0">]) + </span><span class="s3">')' </span><span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">catThem_startPSL]</span>
+
+    <span class="s2">return </span><span class="s0">cat_start</span><span class="s2">, </span><span class="s0">catThem_start</span>
+
+
+<span class="s0">cat_start</span><span class="s2">, </span><span class="s0">catThem_start = dropdowns(nodes)</span>
+
+<span class="s0">d = catThem_start</span>
+<span class="s0">afile = open(</span><span class="s3">r'them2_alt'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+<span class="s0">d = cat_start</span>
+<span class="s0">afile = open(</span><span class="s3">r'kat2_alt'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+<span class="s0">cat_startdict = []</span>
+<span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">cat_start:</span>
+    <span class="s0">a = {</span><span class="s3">'label'</span><span class="s0">: str(i)</span><span class="s2">, </span><span class="s3">'value'</span><span class="s0">: str(i)}</span>
+    <span class="s0">cat_startdict.append(a)</span>
+
+<span class="s0">catThem_startdict = []</span>
+<span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">catThem_start:</span>
+    <span class="s0">a = {</span><span class="s3">'label'</span><span class="s0">: str(i)</span><span class="s2">, </span><span class="s3">'value'</span><span class="s0">: str(i)}</span>
+    <span class="s0">catThem_startdict.append(a)</span>
+
+
+<span class="s0">d = </span><span class="s3">&quot;&quot;</span>
+<span class="s0">afile = open(</span><span class="s3">r'edgesVordavorAb'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+<span class="s0">d = </span><span class="s3">&quot;&quot;</span>
+<span class="s0">afile = open(</span><span class="s3">r'edgesVordavorAuf'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+<span class="s0">d = </span><span class="s3">''</span>
+<span class="s0">afile = open(</span><span class="s3">r'edgesVordavorAufCTL'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+
+<span class="s0">d = []</span>
+<span class="s0">afile = open(</span><span class="s3">r'edgesVordavorCatDrop'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+<span class="s1">#Input davor frei machen</span>
+
+<span class="s1"># Klick aktuell speichern</span>
+<span class="s0">d = </span><span class="s3">''</span>
+<span class="s0">afile = open(</span><span class="s3">r'input_id'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+
+<span class="s1"># edges</span>
+<span class="s0">d = </span><span class="s3">''</span>
+<span class="s0">afile = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+<span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+<span class="s0">afile.close()</span>
+
+
+
+<span class="s2">def </span><span class="s0">set_Them_options(new_kat</span><span class="s2">, </span><span class="s0">new_them):</span>
+
+    <span class="s0">cat_Sub1 = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">new_kat:</span>
+        <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+        <span class="s0">cat_Sub1.append(a)</span>
+
+    <span class="s1"># Entfernen von Klammer und Zahl von cat_start Liste</span>
+    <span class="s0">cat_start1 = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">cat_start:</span>
+        <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+        <span class="s0">cat_start1.append(a)</span>
+
+    <span class="s1"># Schauen welche Eingabe fehlt, um diese wieder mit (0) aus Liste hinzuzufügen</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">cat_start1:</span>
+        <span class="s2">if </span><span class="s0">i </span><span class="s2">not in </span><span class="s0">cat_Sub1:</span>
+            <span class="s0">new_kat.append(i + </span><span class="s3">'  ' </span><span class="s0">+ </span><span class="s3">'(0)'</span><span class="s0">)</span>
+
+    <span class="s1"># Wieder ursprüngliche Ordnung von Liste wiederherstellen</span>
+    <span class="s0">usr_catLOrd = []</span>
+    <span class="s2">for </span><span class="s0">v </span><span class="s2">in </span><span class="s0">cat_start:</span>
+        <span class="s0">v = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">v).rstrip()</span>
+        <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">new_kat:</span>
+            <span class="s2">if </span><span class="s0">i.startswith(v):</span>
+                <span class="s0">usr_catLOrd.append(i)</span>
+
+
+    <span class="s1"># Endgültige Liste für Option Dict</span>
+    <span class="s0">usr_catLOrdMA = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">new_kat:</span>
+        <span class="s2">for </span><span class="s0">v </span><span class="s2">in </span><span class="s0">cat_start:</span>
+            <span class="s0">b = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">v).rstrip()</span>
+            <span class="s2">if </span><span class="s0">i.startswith(b) </span><span class="s2">and </span><span class="s0">i.endswith(</span><span class="s3">'(0)'</span><span class="s0">):</span>
+                <span class="s0">i = v</span>
+        <span class="s0">usr_catLOrdMA.append(i)</span>
+
+
+    <span class="s1"># Endgültige Value_liste wieder alle mit (0) aus Value_Liste rauslöschen</span>
+
+    <span class="s0">kat2 = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">usr_catLOrd:</span>
+        <span class="s2">if not </span><span class="s0">i.endswith(</span><span class="s3">'(0)'</span><span class="s0">):</span>
+            <span class="s0">kat2.append(i)</span>
+
+    <span class="s1">#########################################################################################################</span>
+
+    <span class="s1"># Entfernen von Klammer und Zahl von Eingabe Liste</span>
+
+    <span class="s0">them_Sub1 = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">new_them:</span>
+        <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+        <span class="s0">them_Sub1.append(a)</span>
+
+    <span class="s1"># Entfernen von Klammer und Zahl von cat_start Liste</span>
+    <span class="s0">them_start1 = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">catThem_start:</span>
+        <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+        <span class="s0">them_start1.append(a)</span>
+
+    <span class="s1"># Schauen welche Eingabe fehlt, um diese wieder mit (0) aus Liste hinzuzufügen</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">them_start1:</span>
+        <span class="s2">if </span><span class="s0">i </span><span class="s2">not in </span><span class="s0">them_Sub1:</span>
+            <span class="s0">new_them.append(i + </span><span class="s3">'  ' </span><span class="s0">+ </span><span class="s3">'(0)'</span><span class="s0">)</span>
+
+    <span class="s1"># Wieder ursprüngliche Ordnung von Liste wiederherstellen</span>
+    <span class="s0">usr_themLOrd = []</span>
+    <span class="s2">for </span><span class="s0">v </span><span class="s2">in </span><span class="s0">catThem_start:</span>
+        <span class="s0">v = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">v).rstrip()</span>
+        <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">new_them:</span>
+            <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+            <span class="s2">if </span><span class="s0">a == v:</span>
+                <span class="s0">usr_themLOrd.append(i)</span>
+
+    <span class="s1"># Endgültige Liste für Option Dict</span>
+    <span class="s0">usr_themLOrdMA = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">new_them:</span>
+        <span class="s2">for </span><span class="s0">v </span><span class="s2">in </span><span class="s0">catThem_start:</span>
+            <span class="s0">b = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">v).rstrip()</span>
+            <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+            <span class="s2">if </span><span class="s0">a == b </span><span class="s2">and </span><span class="s0">i.endswith(</span><span class="s3">'(0)'</span><span class="s0">):</span>
+                <span class="s0">i = v</span>
+        <span class="s0">usr_themLOrdMA.append(i)</span>
+
+    <span class="s0">print(len(usr_themLOrdMA))</span>
+
+    <span class="s1"># Endgültige Value_liste wieder alle mit (0) aus Value_Liste rauslöschen</span>
+
+    <span class="s0">them2 = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">usr_themLOrd:</span>
+        <span class="s2">if not </span><span class="s0">i.endswith(</span><span class="s3">'(0)'</span><span class="s0">):</span>
+            <span class="s0">them2.append(i)</span>
+
+
+    <span class="s1"># Endgültiges Options_dict</span>
+
+    <span class="s1"># Endgültiges Options_dict</span>
+    <span class="s0">new_katdict1 = [{</span><span class="s3">'label'</span><span class="s0">: c</span><span class="s2">, </span><span class="s3">'value'</span><span class="s0">: c} </span><span class="s2">for </span><span class="s0">c </span><span class="s2">in </span><span class="s0">usr_catLOrdMA]</span>
+    <span class="s0">new_themdict1 = [{</span><span class="s3">'label'</span><span class="s0">: c</span><span class="s2">, </span><span class="s3">'value'</span><span class="s0">: c} </span><span class="s2">for </span><span class="s0">c </span><span class="s2">in </span><span class="s0">usr_themLOrdMA]</span>
+
+
+    <span class="s2">return </span><span class="s0">kat2</span><span class="s2">, </span><span class="s0">new_katdict1</span><span class="s2">, </span><span class="s0">them2</span><span class="s2">, </span><span class="s0">new_themdict1</span>
+
+
+
+<span class="s2">def </span><span class="s0">filter_data(usr_catL</span><span class="s2">, </span><span class="s0">usr_catThemL):</span>
+
+
+    <span class="s0">ctx = dash.callback_context</span>
+    <span class="s0">input_id = ctx.triggered[</span><span class="s4">0</span><span class="s0">][</span><span class="s3">&quot;prop_id&quot;</span><span class="s0">].split(</span><span class="s3">&quot;.&quot;</span><span class="s0">)[</span><span class="s4">0</span><span class="s0">]</span>
+
+    <span class="s2">try</span><span class="s0">:</span>
+        <span class="s0">usr_catL1 = []</span>
+        <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">usr_catL:</span>
+            <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+            <span class="s0">usr_catL1.append(a)</span>
+
+    <span class="s2">except</span><span class="s0">:</span>
+        <span class="s2">pass</span>
+
+    <span class="s2">try</span><span class="s0">:</span>
+        <span class="s0">usr_catThemL1 = []</span>
+        <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">usr_catThemL:</span>
+            <span class="s0">a = re.sub(</span><span class="s3">r&quot; \(\d+\)&quot;</span><span class="s2">, </span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s0">i).rstrip()</span>
+            <span class="s0">usr_catThemL1.append(a)</span>
+    <span class="s2">except</span><span class="s0">:</span>
+        <span class="s2">pass</span>
+
+    <span class="s1">###### Elements erstellen#######</span>
+
+    <span class="s1">###!!!Vorher ändern!!!</span>
+
+    <span class="s0">network_df3.loc[network_df3[</span><span class="s3">'TitelVD_ID'</span><span class="s0">] == -</span><span class="s4">1</span><span class="s2">, </span><span class="s3">'Dokumentart'</span><span class="s0">] = </span><span class="s3">'1'</span>
+    <span class="s0">network_df3.loc[network_df3[</span><span class="s3">'TitelVD_ID'</span><span class="s0">] != -</span><span class="s4">1</span><span class="s2">, </span><span class="s3">'Dokumentart'</span><span class="s0">] = </span><span class="s3">'2'</span>
+
+    <span class="s0">nodes = network_df3.filter(</span>
+        <span class="s0">[</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s2">, </span><span class="s3">'color'</span><span class="s2">, </span><span class="s3">'ThemaVD'</span><span class="s2">, </span><span class="s3">'TitelVD'</span><span class="s2">, </span><span class="s3">'year'</span><span class="s2">, </span><span class="s3">'month'</span><span class="s2">, </span><span class="s3">'day'</span><span class="s2">, </span><span class="s3">'x'</span><span class="s2">, </span><span class="s3">'y'</span><span class="s2">, </span><span class="s3">'Occurrences_aktuell'</span><span class="s2">,</span>
+         <span class="s3">'Dokumentart'</span><span class="s0">])</span>
+
+    <span class="s0">mapping = {nodes.columns[</span><span class="s4">0</span><span class="s0">]: </span><span class="s3">'id'</span><span class="s0">}</span>
+    <span class="s0">nodes = nodes.rename(columns=mapping)</span>
+    <span class="s0">nodes[</span><span class="s3">'label'</span><span class="s0">] = nodes[</span><span class="s3">'id'</span><span class="s0">]</span>
+
+    <span class="s0">network_merge = network_df3.copy()</span>
+    <span class="s2">del </span><span class="s0">network_merge[</span><span class="s3">'Sitzungsnummer'</span><span class="s0">]</span>
+    <span class="s0">edges1 = network_merge.merge(network_df2</span><span class="s2">, </span><span class="s0">on=</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s0">)</span>
+
+    <span class="s2">try</span><span class="s0">:</span>
+        <span class="s0">edges1 = edges1.rename(columns={</span><span class="s3">'TitelVD_x'</span><span class="s0">: </span><span class="s3">'TitelVD'</span><span class="s0">})</span>
+        <span class="s0">edges1 = edges1.rename(columns={</span><span class="s3">'ThemaVD_x'</span><span class="s0">: </span><span class="s3">'ThemaVD'</span><span class="s0">})</span>
+    <span class="s2">except</span><span class="s0">:</span>
+        <span class="s2">pass</span>
+
+    <span class="s0">edgesVor = edges1.copy()</span>
+    <span class="s0">edgesVor2 = edges1.copy()</span>
+    <span class="s0">edgesVor3 = edges1.copy()</span>
+
+
+
+
+    <span class="s1">###########################Filter für Drops#########################</span>
+
+
+    <span class="s0">edgesVor3 = edges1.copy()</span>
+
+
+    <span class="s1">#logger.info(f&quot;kat2_alt: {len(kat2_a)}&quot;)</span>
+    <span class="s1">#logger.info(f&quot;usr_catL1: {len(usr_catL1)}&quot;)</span>
+    <span class="s1">#logger.info(f&quot;cat_start: {len(cat_start)}&quot;)</span>
+
+    <span class="s1">#logger.info(f&quot;them2_a: {len(them2_a)}&quot;)</span>
+    <span class="s1">#logger.info(f&quot;usr_catThemL1: {len(usr_catThemL1)}&quot;)</span>
+    <span class="s1">#logger.info(f&quot;catThem_start: {len(catThem_start)}&quot;)</span>
+
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+
+
+
+    <span class="s1">### Filter edges</span>
+
+
+    <span class="s2">try</span><span class="s0">:</span>
+        <span class="s0">file2 = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'rb'</span><span class="s0">)</span>
+        <span class="s0">edges = pickle.load(file2)</span>
+        <span class="s0">file2.close()</span>
+    <span class="s2">except</span><span class="s0">:</span>
+        <span class="s2">pass</span>
+
+    <span class="s2">if </span><span class="s0">edges != </span><span class="s3">''</span><span class="s0">:</span>
+        <span class="s0">print(</span><span class="s3">'Referenz Anfang'</span><span class="s0">)</span>
+        <span class="s0">print(len(edges))</span>
+
+        <span class="s1">### Edges welche gelöscht werden soll</span>
+
+        <span class="s0">print(</span><span class="s3">'Delete Edges'</span><span class="s0">)</span>
+
+        <span class="s1"># Rausfinden welche Titel</span>
+        <span class="s0">edgesDel1 =  edgesVor3[(edgesVor3.Drucksache_Nummer.isin(edges))]</span>
+        <span class="s0">edgesDel1 = edgesDel1.drop_duplicates(subset=[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">])</span>
+        <span class="s0">edgesDel1L = edgesDel1[</span><span class="s3">'TitelVD'</span><span class="s0">].tolist()</span>
+
+        <span class="s0">print(</span><span class="s3">'Titel zum Beibehalten'</span><span class="s0">)</span>
+        <span class="s0">print(edgesDel1L)</span>
+
+        <span class="s1"># Löschen von allem außer der TitelVDListe</span>
+        <span class="s0">edgesDel =  edgesVor3[(edgesVor3.TitelVD.isin(edgesDel1L))]</span>
+        <span class="s0">edgesDel =  edgesDel[(~edgesDel.Drucksache_Nummer.isin(edges))]</span>
+        <span class="s0">edgesDel = edgesDel.drop_duplicates(subset=[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">])</span>
+        <span class="s0">edgesDelL = edgesDel[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+        <span class="s0">print(len(edgesDelL))</span>
+
+
+
+
+
+    <span class="s1">#Komplett</span>
+
+    <span class="s0">komplett = edgesVor3[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+    <span class="s1">#Referenz Beginn</span>
+
+    <span class="s2">if </span><span class="s0">edges == </span><span class="s3">''</span><span class="s0">:</span>
+
+        <span class="s2">try</span><span class="s0">:</span>
+            <span class="s0">referenzDT = edgesVor3[(edgesVor3.Drucksache_Nummer.isin(edges))]</span>
+            <span class="s0">referenz = referenzDT[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+        <span class="s2">except</span><span class="s0">:</span>
+            <span class="s0">referenz = komplett</span>
+
+    <span class="s1"># Normalfall der Referenz</span>
+    <span class="s2">if </span><span class="s0">edges != </span><span class="s3">''</span><span class="s0">:</span>
+
+        <span class="s0">print(</span><span class="s3">'Normalfall Referenz'</span><span class="s0">)</span>
+        <span class="s0">referenzDT = edgesVor3[(edgesVor3.Drucksache_Nummer.isin(edges))]</span>
+        <span class="s1">#referenzDT = referenzDT.drop_duplicates(subset=['Drucksache_Nummer'])</span>
+        <span class="s0">referenz = referenzDT[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+
+<span class="s1">#################################################################################</span>
+<span class="s1">#################################################################################</span>
+
+    <span class="s2">if </span><span class="s0">input_id == </span><span class="s3">&quot;cat_dropdown&quot;</span><span class="s0">:</span>
+
+        <span class="s1"># Normalfall der aktuellen Drucksachen</span>
+        <span class="s0">aktuellCatthemDT = edgesVor3[(edgesVor3.TitelVD.isin(usr_catL1))]</span>
+        <span class="s1">#aktuellCatthemDT = aktuellCatthemDT.drop_duplicates(subset=['Drucksache_Nummer'])</span>
+        <span class="s0">aktuellCatthem = aktuellCatthemDT[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+
+    <span class="s2">if </span><span class="s0">input_id == </span><span class="s3">&quot;catThem_dropdown&quot;</span><span class="s0">:</span>
+        <span class="s1"># Normalfall der aktuellen Drucksachen</span>
+        <span class="s0">aktuellCatthemDT = edgesVor3[(edgesVor3.ThemaVD.isin(usr_catThemL1))]</span>
+        <span class="s1"># aktuellCatthemDT = aktuellCatthemDT.drop_duplicates(subset=['Drucksache_Nummer'])</span>
+        <span class="s0">aktuellCatthem = aktuellCatthemDT[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+<span class="s1">#################################################################################</span>
+<span class="s1">#################################################################################</span>
+
+    <span class="s1"># Spezialfall wenn einer der beiden Inputs off ist.</span>
+    <span class="s2">if </span><span class="s0">(len(aktuellCatthem) == </span><span class="s4">0 </span><span class="s2">and </span><span class="s0">usr_catThemL == []) </span><span class="s2">or </span><span class="s0">(len(aktuellCatthem) == </span><span class="s4">0 </span><span class="s2">and </span><span class="s0">usr_catL1 == []) :</span>
+        <span class="s0">print(</span><span class="s3">'OFF'</span><span class="s0">)</span>
+        <span class="s0">aktuellCatthemDT = edgesVor3[(edgesVor3.TitelVD.isin(usr_catL1))]</span>
+        <span class="s1">#aktuellCatthemDT = aktuellCatthemDT.drop_duplicates(subset=['Drucksache_Nummer'])</span>
+        <span class="s0">aktuellCatthem = aktuellCatthemDT[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+    <span class="s1"># Referenz wieder aktualisieren, wenn alle Inputs involviert sind</span>
+    <span class="s2">if </span><span class="s0">len(aktuellCatthem) == len(komplett):</span>
+        <span class="s0">referenz = komplett</span>
+
+
+    <span class="s0">print(</span><span class="s3">'referenz'</span><span class="s0">)</span>
+    <span class="s0">print(len(referenz))</span>
+
+    <span class="s0">print(</span><span class="s3">'aktuellCatthem'</span><span class="s0">)</span>
+    <span class="s0">print(len(aktuellCatthem))</span>
+
+
+    <span class="s2">if </span><span class="s0">input_id == </span><span class="s3">&quot;catThem_dropdown&quot;</span><span class="s0">:</span>
+
+        <span class="s2">try</span><span class="s0">:</span>
+            <span class="s0">file2 = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'rb'</span><span class="s0">)</span>
+            <span class="s0">edges = pickle.load(file2)</span>
+            <span class="s0">file2.close()</span>
+        <span class="s2">except</span><span class="s0">:</span>
+            <span class="s2">pass</span>
+
+        <span class="s2">if </span><span class="s0">(bool(len(aktuellCatthem) &lt; len(referenz))) == </span><span class="s2">True</span><span class="s0">:</span>
+
+            <span class="s0">print(</span><span class="s3">'CatThem Ab'</span><span class="s0">)</span>
+
+
+
+            <span class="s0">edgesVor = edgesVor[(edgesVor.ThemaVD.isin(usr_catThemL1))]</span>
+
+            <span class="s2">try</span><span class="s0">:</span>
+                <span class="s0">edgesVor = edgesVor[(edgesVor.Drucksache_Nummer.isin(edges))]</span>
+            <span class="s2">except</span><span class="s0">:</span>
+                <span class="s2">pass</span>
+
+
+            <span class="s0">edges = edgesVor[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+            <span class="s1"># Speichern der edges</span>
+
+            <span class="s0">d = edges</span>
+            <span class="s0">afile = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+            <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+            <span class="s0">afile.close()</span>
+
+
+        <span class="s2">if </span><span class="s0">bool(len(aktuellCatthem) &gt;=  len(referenz))  == </span><span class="s2">True</span><span class="s0">:</span>
+
+
+            <span class="s0">print(</span><span class="s3">'CatThem Auf'</span><span class="s0">)</span>
+
+            <span class="s0">edgesVor = edgesVor[(edgesVor.ThemaVD.isin(usr_catThemL1))]</span>
+            <span class="s0">edges = edgesVor[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+            <span class="s0">d = edges</span>
+            <span class="s0">afile = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+            <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+            <span class="s0">afile.close()</span>
+
+
+
+
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+
+
+    <span class="s2">if </span><span class="s0">input_id == </span><span class="s3">&quot;cat_dropdown&quot;</span><span class="s0">:</span>
+
+        <span class="s2">try</span><span class="s0">:</span>
+            <span class="s0">file2 = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'rb'</span><span class="s0">)</span>
+            <span class="s0">edges = pickle.load(file2)</span>
+            <span class="s0">file2.close()</span>
+        <span class="s2">except</span><span class="s0">:</span>
+            <span class="s2">pass</span>
+
+        <span class="s2">if </span><span class="s0">(bool(len(aktuellCatthem) &lt; len(referenz))) == </span><span class="s2">True</span><span class="s0">:</span>
+
+            <span class="s0">print(</span><span class="s3">'Cat Ab'</span><span class="s0">)</span>
+
+
+            <span class="s0">edgesVor = edgesVor[(edgesVor.TitelVD.isin(usr_catL1))]</span>
+
+            <span class="s2">try</span><span class="s0">:</span>
+                <span class="s0">edgesVor = edgesVor[(edgesVor.Drucksache_Nummer.isin(edges))]</span>
+
+            <span class="s2">except</span><span class="s0">:</span>
+                <span class="s2">pass</span>
+
+            <span class="s0">edges = edgesVor[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+            <span class="s1"># Speichern der edges</span>
+
+            <span class="s0">d = edges</span>
+            <span class="s0">afile = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+            <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+            <span class="s0">afile.close()</span>
+
+        <span class="s2">if </span><span class="s0">bool(len(aktuellCatthem) &gt;=  len(referenz))  == </span><span class="s2">True</span><span class="s0">:</span>
+
+            <span class="s0">print(</span><span class="s3">'Cat Auf'</span><span class="s0">)</span>
+
+            <span class="s0">edgesVor = edgesVor[(edgesVor.TitelVD.isin(usr_catL1))]</span>
+           <span class="s1"># edgesVor = edgesVor.drop_duplicates(subset=['Drucksache_Nummer'])</span>
+            <span class="s0">edgesVor = edgesVor[(~edgesVor.Drucksache_Nummer.isin(edgesDelL))]</span>
+            <span class="s0">edges = edgesVor[</span><span class="s3">'Drucksache_Nummer'</span><span class="s0">].tolist()</span>
+
+
+            <span class="s0">d = edges</span>
+            <span class="s0">afile = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+            <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+            <span class="s0">afile.close()</span>
+
+
+            <span class="s0">print(</span><span class="s3">'Cat Auf Edges'</span><span class="s0">)</span>
+            <span class="s0">print(len(edges))</span>
+
+
+
+
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+
+
+
+
+    <span class="s2">if </span><span class="s0">bool(usr_catL1 == [] </span><span class="s2">or </span><span class="s0">usr_catThemL1 == []) </span><span class="s2">and </span><span class="s0">(len(referenz) != </span><span class="s4">0</span><span class="s0">) == </span><span class="s2">True</span><span class="s0">:</span>
+
+
+        <span class="s0">d = []</span>
+        <span class="s0">afile = open(</span><span class="s3">r'edges'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+        <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+        <span class="s0">afile.close()</span>
+
+        <span class="s0">referenz = </span><span class="s3">' '</span>
+
+
+        <span class="s0">logger.info(</span><span class="s3">f&quot;Neustart&quot;</span><span class="s0">)</span>
+
+
+
+
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+<span class="s1">##############################################################################</span>
+
+
+
+    <span class="s0">d = usr_catL1</span>
+    <span class="s0">afile = open(</span><span class="s3">r'kat2_alt'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+    <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+    <span class="s0">afile.close()</span>
+
+    <span class="s0">d = usr_catThemL1</span>
+    <span class="s0">afile = open(</span><span class="s3">r'them2_alt'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+    <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+    <span class="s0">afile.close()</span>
+
+    <span class="s2">try</span><span class="s0">:</span>
+        <span class="s2">if </span><span class="s0">bool(x == </span><span class="s4">1</span><span class="s0">) == </span><span class="s2">True</span><span class="s0">:</span>
+
+            <span class="s0">d = </span><span class="s3">&quot;&quot;</span>
+            <span class="s0">afile = open(</span><span class="s3">r'kat2_alt'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+            <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+            <span class="s0">afile.close()</span>
+
+            <span class="s0">d = </span><span class="s3">&quot;&quot;</span>
+            <span class="s0">afile = open(</span><span class="s3">r'them2_alt'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+            <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+            <span class="s0">afile.close()</span>
+    <span class="s2">except</span><span class="s0">:</span>
+        <span class="s2">pass</span>
+
+
+
+
+    <span class="s2">try</span><span class="s0">:</span>
+        <span class="s0">d = input_id</span>
+        <span class="s0">afile = open(</span><span class="s3">r'Eingabe'</span><span class="s2">, </span><span class="s3">'wb'</span><span class="s0">)</span>
+        <span class="s0">pickle.dump(d</span><span class="s2">, </span><span class="s0">afile)</span>
+        <span class="s0">afile.close()</span>
+    <span class="s2">except</span><span class="s0">:</span>
+        <span class="s2">pass</span>
+
+
+    <span class="s1">### Ausnahme der Protokolle</span>
+
+    <span class="s0">protoL = []</span>
+    <span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b </span><span class="s2">in </span><span class="s0">zip(edgesVor[</span><span class="s3">&quot;Sitzungsnummer&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">edgesVor[</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s0">]):</span>
+        <span class="s0">protoL.append(a)</span>
+        <span class="s0">protoL.append(b)</span>
+
+    <span class="s0">s = []</span>
+    <span class="s2">for </span><span class="s0">i </span><span class="s2">in </span><span class="s0">protoL:</span>
+        <span class="s2">if </span><span class="s0">i </span><span class="s2">not in </span><span class="s0">s:</span>
+            <span class="s0">s.append(i)</span>
+
+    <span class="s0">nodes = nodes[(nodes.id.isin(s))]</span>
+    <span class="s0">nodes4 = nodes.copy()</span>
+
+    <span class="s1"># Nodes</span>
+    <span class="s0">elm_list = []</span>
+    <span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b</span><span class="s2">, </span><span class="s0">them</span><span class="s2">, </span><span class="s0">tit</span><span class="s2">, </span><span class="s0">year</span><span class="s2">, </span><span class="s0">month</span><span class="s2">, </span><span class="s0">day</span><span class="s2">, </span><span class="s0">occ</span><span class="s2">, </span><span class="s0">x</span><span class="s2">, </span><span class="s0">y</span><span class="s2">, </span><span class="s0">doc </span><span class="s2">in </span><span class="s0">zip(nodes[</span><span class="s3">'id'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'label'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'ThemaVD'</span><span class="s0">]</span><span class="s2">,</span>
+                                                                 <span class="s0">nodes[</span><span class="s3">'TitelVD'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'year'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'month'</span><span class="s0">]</span><span class="s2">,</span>
+                                                                 <span class="s0">nodes[</span><span class="s3">'day'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'Occurrences_aktuell'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'x'</span><span class="s0">]</span><span class="s2">,</span>
+                                                                 <span class="s0">nodes[</span><span class="s3">'y'</span><span class="s0">]</span><span class="s2">, </span><span class="s0">nodes[</span><span class="s3">'Dokumentart'</span><span class="s0">]):</span>
+        <span class="s0">dict = {</span><span class="s3">'data'</span><span class="s0">: {</span><span class="s3">'id'</span><span class="s0">: str(a)</span><span class="s2">, </span><span class="s3">'label'</span><span class="s0">: str(b)</span><span class="s2">, </span><span class="s3">'titel'</span><span class="s0">: str(tit)</span><span class="s2">, </span><span class="s3">'thema'</span><span class="s0">: str(them)</span><span class="s2">,</span>
+                         <span class="s3">'datum'</span><span class="s0">: str(year) + </span><span class="s3">'-' </span><span class="s0">+ str(month) + </span><span class="s3">'-' </span><span class="s0">+ str(day)</span><span class="s2">, </span><span class="s3">'node_size'</span><span class="s0">: float(occ * size)}</span><span class="s2">,</span>
+                <span class="s3">'position'</span><span class="s0">: {</span><span class="s3">'x'</span><span class="s0">: float(x)</span><span class="s2">, </span><span class="s3">'y'</span><span class="s0">: float(y)}</span><span class="s2">,</span>
+                <span class="s3">'classes'</span><span class="s0">: str(tit) + </span><span class="s3">' ' </span><span class="s0">+ str(them) + </span><span class="s3">' ' </span><span class="s0">+ </span><span class="s3">'node' </span><span class="s0">+ </span><span class="s3">' ' </span><span class="s0">+ str(doc)}</span>
+
+        <span class="s0">elm_list.append(dict)</span>
+
+    <span class="s1"># Edges</span>
+
+    <span class="s2">for </span><span class="s0">a</span><span class="s2">, </span><span class="s0">b</span><span class="s2">, </span><span class="s0">c </span><span class="s2">in </span><span class="s0">zip(edgesVor[</span><span class="s3">&quot;Sitzungsnummer&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">edgesVor[</span><span class="s3">&quot;Drucksache_Nummer&quot;</span><span class="s0">]</span><span class="s2">, </span><span class="s0">edgesVor[</span><span class="s3">'TitelVD'</span><span class="s0">]):</span>
+        <span class="s0">dict = {</span><span class="s3">'data'</span><span class="s0">: {</span><span class="s3">'source'</span><span class="s0">: str(a)</span><span class="s2">, </span><span class="s3">'target'</span><span class="s0">: str(b)}</span><span class="s2">, </span><span class="s3">'classes'</span><span class="s0">: str(c)}</span>
+        <span class="s0">elm_list.append(dict)</span>
+
+    <span class="s2">return </span><span class="s0">elm_list</span><span class="s2">, </span><span class="s0">usr_catThemL1</span><span class="s2">, </span><span class="s0">usr_catL1 </span><span class="s2">,</span><span class="s0">nodes4</span>
+
+
+<span class="s1">##############################################################################</span>
+
+
+<span class="s0">app.layout = html.Div([</span>
+    <span class="s0">cyto.Cytoscape(</span>
+        <span class="s0">id=</span><span class="s3">'core_19_cytoscape'</span><span class="s2">,</span>
+        <span class="s0">layout={</span><span class="s3">'name'</span><span class="s0">: </span><span class="s3">'preset'</span><span class="s0">}</span><span class="s2">,</span>
+        <span class="s0">style={</span><span class="s3">'width'</span><span class="s0">: </span><span class="s3">'100%'</span><span class="s2">, </span><span class="s3">'height'</span><span class="s0">: </span><span class="s3">'400px'</span><span class="s0">}</span><span class="s2">,</span>
+        <span class="s0">elements=startup_elm_list</span><span class="s2">,</span>
+        <span class="s0">stylesheet=def_stylesheet</span><span class="s2">,</span>
+        <span class="s0">minZoom=</span><span class="s4">0.06</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">html.P(id=</span><span class="s3">'cytoscape-tapNodeData-output'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">html.P(id=</span><span class="s3">'cytoscape-tapEdgeData-output'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">html.P(id=</span><span class="s3">'cytoscape-mouseoverNodeData-output'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">html.P(id=</span><span class="s3">'cytoscape-mouseoverEdgeData-output'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">dbc.Col(</span>
+        <span class="s0">[</span>
+            <span class="s0">dbc.Badge(</span>
+                <span class="s3">&quot;Kategorien Thema:&quot;</span><span class="s2">, </span><span class="s0">color=</span><span class="s3">&quot;info&quot;</span><span class="s2">, </span><span class="s0">className=</span><span class="s3">&quot;mr-1&quot;</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">dbc.FormGroup(</span>
+                <span class="s0">[</span>
+                    <span class="s0">dcc.Dropdown(</span>
+                        <span class="s0">id=</span><span class="s3">&quot;catThem_dropdown&quot;</span><span class="s2">,</span>
+                        <span class="s0">options=catThem_startdict</span><span class="s2">,</span>
+                        <span class="s0">value=catThem_start</span><span class="s2">,</span>
+                        <span class="s0">multi=</span><span class="s2">True,</span>
+                        <span class="s0">style={</span><span class="s3">&quot;width&quot;</span><span class="s0">: </span><span class="s3">&quot;100%&quot;</span><span class="s0">}</span><span class="s2">,</span>
+                    <span class="s0">)</span><span class="s2">,</span>
+
+                <span class="s0">]</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">dbc.Badge(</span>
+                <span class="s3">&quot;Kategorien Titel:&quot;</span><span class="s2">, </span><span class="s0">color=</span><span class="s3">&quot;info&quot;</span><span class="s2">, </span><span class="s0">className=</span><span class="s3">&quot;mr-1&quot;</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">dbc.FormGroup(</span>
+                <span class="s0">[</span>
+                    <span class="s0">dcc.Dropdown(</span>
+                        <span class="s0">id=</span><span class="s3">&quot;cat_dropdown&quot;</span><span class="s2">,</span>
+                        <span class="s0">options=cat_startdict</span><span class="s2">,</span>
+                        <span class="s0">value=cat_start</span><span class="s2">,</span>
+                        <span class="s0">multi=</span><span class="s2">True,</span>
+                        <span class="s0">style={</span><span class="s3">&quot;width&quot;</span><span class="s0">: </span><span class="s3">&quot;100%&quot;</span><span class="s0">}</span><span class="s2">,</span>
+                    <span class="s0">)</span><span class="s2">,</span>
+
+                <span class="s0">]</span>
+            <span class="s0">)</span><span class="s2">,</span>
+
+        <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">sm=</span><span class="s4">12</span><span class="s2">,</span>
+        <span class="s0">md=</span><span class="s4">4</span><span class="s2">,</span>
+    <span class="s0">)</span>
+<span class="s0">])</span>
+
+
+<span class="s1">###############################################################</span>
+
+
+<span class="s1">##########Callback Kat-Auswahl##############</span>
+
+<span class="s0">@app.callback(</span>
+    <span class="s0">Output(</span><span class="s3">&quot;core_19_cytoscape&quot;</span><span class="s2">, </span><span class="s3">&quot;elements&quot;</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">Output(</span><span class="s3">'cat_dropdown'</span><span class="s2">, </span><span class="s3">'value'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">Output(</span><span class="s3">'cat_dropdown'</span><span class="s2">, </span><span class="s3">'options'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">Output(</span><span class="s3">'catThem_dropdown'</span><span class="s2">, </span><span class="s3">'value'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">Output(</span><span class="s3">'catThem_dropdown'</span><span class="s2">, </span><span class="s3">'options'</span><span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">[Input(</span><span class="s3">&quot;cat_dropdown&quot;</span><span class="s2">, </span><span class="s3">&quot;value&quot;</span><span class="s0">)]</span><span class="s2">,</span>
+    <span class="s0">[Input(</span><span class="s3">&quot;catThem_dropdown&quot;</span><span class="s2">, </span><span class="s3">&quot;value&quot;</span><span class="s0">)]</span><span class="s2">,</span>
+    <span class="s0">prevent_initial_call=</span><span class="s2">True</span>
+<span class="s0">)</span>
+<span class="s2">def </span><span class="s0">elements(usr_catL</span><span class="s2">, </span><span class="s0">usr_catThemL):</span>
+
+    <span class="s0">ctx = dash.callback_context</span>
+    <span class="s0">input_id = ctx.triggered[</span><span class="s4">0</span><span class="s0">][</span><span class="s3">&quot;prop_id&quot;</span><span class="s0">].split(</span><span class="s3">&quot;.&quot;</span><span class="s0">)[</span><span class="s4">0</span><span class="s0">]</span>
+
+    <span class="s1"># if bool((len(usr_catThemL) != len(catThem_start)) or (len(usr_catL) != len(cat_start))) == True:</span>
+
+    <span class="s0">logger.info(</span><span class="s3">f&quot;!!!Beginn: </span><span class="s2">{</span><span class="s0">input_id</span><span class="s2">}</span><span class="s3">&quot;</span><span class="s0">)</span>
+
+    <span class="s1"># Zusammenstellung von Netzwerk</span>
+    <span class="s0">elements</span><span class="s2">, </span><span class="s0">p</span><span class="s2">, </span><span class="s0">q</span><span class="s2">, </span><span class="s0">nodesele = filter_data(usr_catL</span><span class="s2">, </span><span class="s0">usr_catThemL)</span>
+    <span class="s1"># Neue Options/Values</span>
+    <span class="s0">new_kat </span><span class="s2">,</span><span class="s0">new_them = dropdowns(nodesele)</span>
+    <span class="s1"># Neue Options/Values in richtiger Reihenfolge mit dict</span>
+    <span class="s0">kat2</span><span class="s2">, </span><span class="s0">new_katdict1</span><span class="s2">, </span><span class="s0">them2</span><span class="s2">, </span><span class="s0">new_themdict1 = set_Them_options(new_kat</span><span class="s2">, </span><span class="s0">new_them)</span>
+
+
+    <span class="s0">logger.info(</span><span class="s3">f&quot;usr_catL: </span><span class="s2">{</span><span class="s0">usr_catL</span><span class="s2">}</span><span class="s3">&quot;</span><span class="s0">)</span>
+    <span class="s0">logger.info(</span><span class="s3">f&quot;usr_catThemL: </span><span class="s2">{</span><span class="s0">usr_catThemL</span><span class="s2">}</span><span class="s3">&quot;</span><span class="s0">)</span>
+
+    <span class="s0">logger.info(</span><span class="s3">f&quot;new_themdict1: </span><span class="s2">{</span><span class="s0">new_themdict1</span><span class="s2">}</span><span class="s3">&quot;</span><span class="s0">)</span>
+
+    <span class="s3">&quot;&quot;&quot; 
+ 
+    logger.info(f&quot;them2: {them2}&quot;) 
+ 
+    logger.info(f&quot;new_themdict1: {print(len(new_themdict1))}&quot;) 
+ 
+    logger.info(f&quot;new_katdict1: {print(len(new_katdict1))}&quot;) 
+    &quot;&quot;&quot;</span>
+    <span class="s3">&quot;&quot;&quot; 
+    logger.info(f&quot;new_kat: {new_kat}&quot;) 
+    logger.info(f&quot;new_them: {new_them}&quot;) 
+ 
+    logger.info(f&quot;new_themdict1: {new_themdict1}&quot;) 
+    logger.info(f&quot;new_katdict1: {new_katdict1}&quot;) 
+ 
+    logger.info(f&quot;!!!Ende: {input_id}&quot;) 
+    &quot;&quot;&quot;</span>
+    <span class="s2">return </span><span class="s0">elements</span><span class="s2">, </span><span class="s0">kat2</span><span class="s2">, </span><span class="s0">new_katdict1</span><span class="s2">, </span><span class="s0">them2</span><span class="s2">, </span><span class="s0">new_themdict1</span>
+
+
+
+
+
+
+
+<span class="s1">#####################Tap Infos#######################</span>
+
+
+<span class="s0">@app.callback(</span>
+    <span class="s0">Output(</span><span class="s3">&quot;node-data&quot;</span><span class="s2">, </span><span class="s3">&quot;children&quot;</span><span class="s0">)</span><span class="s2">, </span><span class="s0">[Input(</span><span class="s3">&quot;core_19_cytoscape&quot;</span><span class="s2">, </span><span class="s3">&quot;selectedNodeData&quot;</span><span class="s0">)]</span>
+<span class="s0">)</span>
+<span class="s0">@app.callback(Output(</span><span class="s3">'cytoscape-tapNodeData-output'</span><span class="s2">, </span><span class="s3">'children'</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">Input(</span><span class="s3">'core_19_cytoscape'</span><span class="s2">, </span><span class="s3">'tapNodeData'</span><span class="s0">))</span>
+<span class="s2">def </span><span class="s0">displayTapNodeData(data):</span>
+    <span class="s2">if </span><span class="s0">data:</span>
+        <span class="s2">return </span><span class="s3">&quot;Informationen über das Dokument: &quot; </span><span class="s0">+ data[</span><span class="s3">'label'</span><span class="s0">] + </span><span class="s3">'  ' </span><span class="s0">+ data[</span><span class="s3">'titel'</span><span class="s0">] + </span><span class="s3">'  ' </span><span class="s0">+ data[</span>
+            <span class="s3">'thema'</span><span class="s0">] + </span><span class="s3">'  ' </span><span class="s0">+ data[</span><span class="s3">'datum'</span><span class="s0">]</span>
+
+
+<span class="s0">@app.callback(Output(</span><span class="s3">'cytoscape-mouseoverNodeData-output'</span><span class="s2">, </span><span class="s3">'children'</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">Input(</span><span class="s3">'core_19_cytoscape'</span><span class="s2">, </span><span class="s3">'mouseoverNodeData'</span><span class="s0">))</span>
+<span class="s2">def </span><span class="s0">displayTapNodeData(data):</span>
+    <span class="s2">if </span><span class="s0">data:</span>
+        <span class="s2">return </span><span class="s3">&quot;Dokument: &quot; </span><span class="s0">+ data[</span><span class="s3">'label'</span><span class="s0">] + </span><span class="s3">'  ' </span><span class="s0">+ data[</span><span class="s3">'titel'</span><span class="s0">] + </span><span class="s3">'  ' </span><span class="s0">+ data[</span><span class="s3">'thema'</span><span class="s0">] + </span><span class="s3">'  ' </span><span class="s0">+ data[</span><span class="s3">'datum'</span><span class="s0">]</span>
+    <span class="s2">if not </span><span class="s0">data:</span>
+        <span class="s2">return </span><span class="s3">''</span>
+
+
+<span class="s2">if </span><span class="s0">__name__ == </span><span class="s3">&quot;__main__&quot;</span><span class="s0">:</span>
+    <span class="s0">state_data = fetch_csv(STATE_DATA_URL)</span>
+    <span class="s0">state_data = clean(state_data)</span>
+
+    <span class="s0">plot_cumulative_state(state_data</span><span class="s2">, </span><span class="s3">&quot;index.html&quot;</span><span class="s0">)</span>
+
+
+
+
+
+
+</pre>
+</body>
+</html>
