@@ -164,16 +164,16 @@ from sklearn.manifold import TSNE
 import umap
 import json
 
-os.chdir('/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/')
-path = '/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/'
-path_export = '/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/'
+#os.chdir('/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/')
+#path = '/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/'
+#path_export = '/Users/janoschkorell/Desktop/Wissenschaft/Statistik/Python/Netzwerktest/'
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 
-network_df = pd.read_csv("characNS.csv", index_col=0)
-network_df2 = pd.read_csv("rslt_df1.csv", index_col=0)
+network_df = 'https://raw.githubusercontent.com/JanoschKorell/Netzwerk-Bundestag-Online/main/characNS.csv'
+network_df2 = 'https://raw.githubusercontent.com/JanoschKorell/Netzwerk-Bundestag-Online/main/characNS.csv'
 
 #### Netzwerk Koordinaten ####
 
@@ -571,7 +571,7 @@ def filter_data(usr_catL, usr_catThemL):
     edgesVor2 = edges1.copy()
     edgesVor3 = edges1.copy()
 
-    edgesVor.to_csv('edgesVorAnfang.csv')
+
 
 
     ###########################Filter für Drops#########################
@@ -625,7 +625,7 @@ def filter_data(usr_catL, usr_catThemL):
         edgesDel =  edgesDel[(~edgesDel.Drucksache_Nummer.isin(edges))]
         edgesDel = edgesDel.drop_duplicates(subset=['Drucksache_Nummer'])
         edgesDelL = edgesDel['Drucksache_Nummer'].tolist()
-        edgesDel.to_csv('edgesDel.csv')
+
         print(len(edgesDelL))
 
 
@@ -798,7 +798,7 @@ def filter_data(usr_catL, usr_catThemL):
             print('Cat Auf Edges')
             print(len(edges))
 
-            edgesVor.to_csv('edgesVor.csv')
+
 
 
 ##############################################################################
