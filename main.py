@@ -1045,24 +1045,14 @@ def displayTapNodeData(data):
         return ''
 
 
-if __name__ == '__main__':
-    app.run_server("127.0.0.1", port="8050", dev_tools_hot_reload=True)
+if __name__ == "__main__":
+    state_data = fetch_csv(STATE_DATA_URL)
+    state_data = clean(state_data)
 
-"""
+    plot_cumulative_state(state_data, "index.html")
 
-edgesVor2 = edgesVor2[(edgesVor2.TitelVD.isin(usr_catL1))]
-edgesVor2 = edgesVor2[~(edgesVor2.ThemaVD.isin(usr_catThemL1))]
 
-edgesVor2.to_csv('edgesVor2.csv')
 
-edgesVordavor = edgesVor2['Drucksache_Nummer'].tolist()
-
-d = edgesVordavor
-afile = open(r'edgesVordavor', 'wb')
-pickle.dump(d, afile)
-afile.close()
-
-"""
 
 
 
