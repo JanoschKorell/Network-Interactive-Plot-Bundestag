@@ -8,4 +8,8 @@ This allows to see which printed matters were discussed or voted on in which Bun
 
 For this piece of code was used:
 
-networkx, dash, plotly, css, 
+networkx, dash, plotly, css
+
+
+---> Since Herokuapp has changed its services, the app is not accessible right now!
+
